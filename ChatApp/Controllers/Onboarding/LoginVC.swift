@@ -33,6 +33,9 @@ class LoginVC: UIViewController {
     }
     
     // MARK: Objc Functions
+    @objc func pushRegisterVC() {
+        navigationController?.pushViewController(RegisterVC(), animated: true)
+    }
     
     
     // MARK: Helping Functions
@@ -75,8 +78,12 @@ class LoginVC: UIViewController {
     }
     
     private func configureFooterView() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(pushRegisterVC))
+        
         view.addSubview(createAccountLabel)
         view.addSubview(signUpButton)
+        signUpButton.isUserInteractionEnabled = true
+        signUpButton.addGestureRecognizer(tap)
         
         NSLayoutConstraint.activate([
             createAccountLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
